@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 class Bored:
@@ -11,7 +12,12 @@ class Bored:
         Returns:
             str: text of activity
         '''
-        pass
+        url = f'{self.url}activity/'
+        res = requests.get(url=url)
+        if res.status_code == 200:
+            return res.json()
+        else:
+            return False
 
     def get_activity_by_type(self, type: str) -> dict:
         '''get activity by type
@@ -25,7 +31,13 @@ class Bored:
         Returns:
             dict: activity data
         '''
-        pass
+        url  = f'{self.url}activity/'
+        payload = {'type': type}
+        r = requests.get( url=url, params=payload  )
+        if r.status_code == 200:
+            return r.json()
+        else:
+            return False
 
     def get_activity_by_id(self, key: int) -> dict:
         '''get activity by key
@@ -39,7 +51,13 @@ class Bored:
         Returns:
             dict: activity data
         '''
-        pass
+        url  = f'{self.url}activity/'
+        payload = {'id': id}
+        r = requests.get( url=url, params=payload  )
+        if r.status_code == 200:
+            return r.json()
+        else:
+            return False
 
     def get_activity_by_accessibility(self, accessibility: float) -> dict:
         '''get activity by accessibility
@@ -54,7 +72,13 @@ class Bored:
         Returns:
             dict: activity data
         '''
-        pass
+        url  = f'{self.url}activity/'
+        payload = {'accessibility': accessibility}
+        r = requests.get( url=url, params=payload  )
+        if r.status_code == 200:
+            return r.json()
+        else:
+            return False
 
     def get_activity_by_price(self, price: float) -> dict:
         '''get activity by price
@@ -69,7 +93,13 @@ class Bored:
         Returns:
             dict: activity data
         '''
-        pass
+        url  = f'{self.url}activity/'
+        payload = {'price': price}
+        r = requests.get( url=url, params=payload  )
+        if r.status_code == 200:
+            return r.json()
+        else:
+            return False
 
     def get_activity_by_price_range(self, minprice: float, maxprice: float) -> dict:
         '''get activity by price
@@ -86,3 +116,9 @@ class Bored:
             dict: activity data
         '''
         pass
+    
+    
+br = Bored()
+
+
+print(br.get_activity_by_price('price'))  
